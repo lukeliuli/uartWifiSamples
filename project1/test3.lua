@@ -33,7 +33,7 @@ end)
 
 
 
-function thingspeakwrite(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
+function writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
 
     print("\n Sending data to thingspeak.com")
     conn=net.createConnection(net.TCP, 0) 
@@ -210,7 +210,7 @@ val7 = revUartVal[7]
 val8 = revUartVal[8]
 
  uartDataRcv =0;
-sendDataAll2(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
+ writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
   end
 end
 
