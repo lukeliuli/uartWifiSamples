@@ -1,10 +1,9 @@
 
-
 uart.setup(0, 115200, 8, uart.PARITY_NONE, uart.STOPBITS_1, 0)
 
 revFieldVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 revUartVal = {-1,-1,-1,-1,-1,-1,-1,-1};
- uartDataRcv = 0;
+uartDataRcv = 0;
 
 wifi.setmode(wifi.STATION)
 wifi.sta.sethostname("Node-MCU-liuli")
@@ -12,14 +11,14 @@ print(wifi.sta.gethostname())
 station_cfg={}
 station_cfg.ssid="liuli"
 station_cfg.pwd=""
---station_cfg.ssid="912-903"
---station_cfg.pwd="19820812"
+station_cfg.ssid="912-903"
+station_cfg.pwd="19820812"
 station_cfg.save=true
 wifi.sta.config(station_cfg)
 wifi.sta.autoconnect(1)
 
 
-tmr.create():alarm(30000, tmr.ALARM_AUTO, function()
+tmr.create():alarm(300000, tmr.ALARM_AUTO, function()
 
   if wifi.sta.getip()== nil then
      print("IP unavaiable, Waiting...")
@@ -27,7 +26,6 @@ tmr.create():alarm(30000, tmr.ALARM_AUTO, function()
      print("Uptime (probably):"..tmr.time())
      print("this wifi mod IP is "..wifi.sta.getip()) 
      print("this wifi mod hostname is "..wifi.sta.gethostname())
-     print("this wifi connected ap is  ".."912-903")
   end
 end)
 
@@ -120,7 +118,7 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
     -- Callback at successful connection 
     sockTS:on("connection", function(sock, payloadout)
  
-        sendstring = "GET /channels/846323/feeds/last?api_key=CHANNEL_READ_API"
+        sendstring = "GET /channels/"..CHANNEL_READ_ID.."/feeds/last?api_key="..CHANNEL_READ_API
         .. " HTTP/1.1\r\n"
         .. "Host: api.thingspeak.com\r\n"
         .. "Connection: close\r\n"
@@ -145,7 +143,7 @@ tmr.create():alarm(3000, tmr.ALARM_AUTO, function()
      CHANNEL_READ_ID = 846323;
      CHANNEL_READ_API = "49IF4JCEHOREDFIY";
      readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
-     uart.write(0,"order:"..revFieldVal[3])
+     uart.write(0,"\n order:"..revFieldVal[3])
      
   end
 end)
@@ -154,9 +152,9 @@ end)
 
 
 uart.on("data",8,function (data)       
-
- print("rev data:"..data..type(data))
- print("rev data:"..#data)
+ --uart.write(0,"\n order:"..revFieldVal[3])
+ uart.write(0,"\n rev data:"..data..type(data))
+ --uart.write(0,"\n rev data:"..#data)
  
 if #data<15 then
 return
@@ -169,7 +167,8 @@ for word in string.gmatch(data, "[+-]?%d+")
 do 
 TMP[cnt]=tonumber(word)
 cnt=cnt+1
-print(word) 
+uart.write(0,' ') 
+uart.write(0,word) 
 end
 
 if cnt<8 then
