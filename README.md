@@ -20,9 +20,9 @@ using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k
 
 (4)delay300ms很重要，不能随意删除。
 
-(5) 51单片机不能用sprintf来讲整数转换为字符串，会出现乱码。  
+(5) 51单片机不能用sprintf来将整数转换为字符串，会出现乱码。  
 ****
-三、K60方面
+三、K60方面  
 1.IAR+K60可以用sprintf将整数转换为字符串  
 2 IAR+K60可以用sprintf不可以将浮点数转换为字符串，会出现错误
 
