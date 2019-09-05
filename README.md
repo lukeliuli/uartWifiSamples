@@ -1,17 +1,19 @@
 # uartWifiSamples
-using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k60 and 51)
+using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k60 and 51)  
 
-Ò»¡¢ESP8266·½Ãæ
-1.ESP8266·½Ãæ running test3.lua. test3.luaÊÇµ±Ç°Ö÷ÔËÐÐÎÄ¼þ,ÆäÓàÊÇ²âÊÔ³ÌÐò.Init.luaÎÄ¼þÓÃÓÚÉè¶¨´®¿Ú²¨ÌØÂÊ£¬ÔËÐÐtest3.lua¡£×¢Òâ²¿·ÖÈçÏÂ
-(1) ESP8266Èç¹û½Ó51µ¥Æ¬»ú£¬ÇëÉè¶¨²¨ÌØÂÊÎª115200ÒÔÏÂ¡£±¾ÏîÄ¿Ä¬ÈÏ57600
-(2)
+ä¸€ã€ESP8266æ–¹é¢
+1.ESP8266æ–¹é¢ running test3.lua. test3.luaæ˜¯å½“å‰ä¸»è¿è¡Œæ–‡ä»¶,å…¶ä½™æ˜¯æµ‹è¯•ç¨‹åº.Init.luaæ–‡ä»¶ç”¨äºŽè®¾å®šä¸²å£æ³¢ç‰¹çŽ‡ï¼Œè¿è¡Œtest3.luaã€‚æ³¨æ„éƒ¨åˆ†å¦‚ä¸‹  
+(1) ESP8266å¦‚æžœæŽ¥51å•ç‰‡æœºï¼Œè¯·è®¾å®šæ³¢ç‰¹çŽ‡ä¸º115200ä»¥ä¸‹ã€‚æœ¬é¡¹ç›®é»˜è®¤57600  
+****
+äºŒã€51å•ç‰‡æœºæ–¹é¢  
+1.main.cæ˜¯51å•ç‰‡æœºä»Žä¸²å£å‘ä¿¡æ¯ç»™ESP8266çš„ç¨‹åºï¼ˆç”¨äºŽ4ä¸²å£51å•ç‰‡æœºï¼Œä¹Ÿå¯ä»¥ç¨å¾®ä¿®æ”¹ä¸€ä¸‹ç”¨äºŽ51å•ç‰‡æœºï¼‰ã€‚å…³é”®ç¨‹åºå’Œåœ°æ–¹æ˜¯  
+(1)my_itoaç”¨äºŽæŠŠæ•´æ•°è½¬æ¢ä¸ºå­—ç¬¦ä¸²  
 
-¶þ¡¢51µ¥Æ¬»ú·½Ãæ
-1.main.cÊÇ51µ¥Æ¬»ú´Ó´®¿Ú·¢ÐÅÏ¢¸øESP8266µÄ³ÌÐò£¨ÓÃÓÚ4´®¿Ú51µ¥Æ¬»ú£¬Ò²¿ÉÒÔÉÔÎ¢ÐÞ¸ÄÒ»ÏÂÓÃÓÚ51µ¥Æ¬»ú£©¡£¹Ø¼ü³ÌÐòºÍµØ·½ÊÇ
-(1)my_itoaÓÃÓÚ°ÑÕûÊý×ª»»Îª×Ö·û´®
-(2)ÓÃsprintf£¬°Ñ°Ë¸öÕûÊý×ª»»ºóµÄ×Ö·û´®£¬½øÐÐÕûºÏ³ÉÒ»¸ö×Ö·û´®£¨ÀàËÆ100 200 300 400 500 600 700 800£©²¢´Ó´®¿Ú·¢ËÍ¸øESP8266
-(3)×¢ÒâÒòÎªÊ¹ÓÃ´óÁ¿µÄÈ«¾Ö×Ö·û´®£¬»á³öÏÖ¡°*** ERROR L107: ADDRESS SPACE OVERFLOW¡±£¬ÐèÒª×ö¶Ôkeil×öÒ»ÏÂÐÞ¸Ä
-¡°ÓÒ¼üµ¥»÷TargetÑ¡Ôñ¡°Options for Target'Target1'¡±¾Í»á³öÀ´Ò»¸ö¿ò£¬ÔÚmemory modelÖÐÑ¡ÔñlargeÑ¡Ïî ¾Í¿ÉÒÔÁË¡±
-£¨4£©delay300msºÜÖØÒª£¬²»ÄÜËæÒâÉ¾³ý¡£
+(2)ç”¨sprintfï¼ŒæŠŠå…«ä¸ªæ•´æ•°è½¬æ¢åŽçš„å­—ç¬¦ä¸²ï¼Œè¿›è¡Œæ•´åˆæˆä¸€ä¸ªå­—ç¬¦ä¸²ï¼ˆç±»ä¼¼100 200 300 400 500 600 700 800ï¼‰å¹¶ä»Žä¸²å£å‘é€ç»™ESP8266  
 
-Èý.testSerialbyMatlabÊÇÓÃmatlab²âÊÔESP8266µÄ³ÌÐò
+(3)æ³¨æ„å› ä¸ºä½¿ç”¨å¤§é‡çš„å…¨å±€å­—ç¬¦ä¸²ï¼Œä¼šå‡ºçŽ°â€œ*** ERROR L107: ADDRESS SPACE OVERFLOWâ€ï¼Œéœ€è¦åšå¯¹keilåšä¸€ä¸‹ä¿®æ”¹
+â€œå³é”®å•å‡»Targeté€‰æ‹©â€œOptions for Target'Target1'â€å°±ä¼šå‡ºæ¥ä¸€ä¸ªæ¡†ï¼Œåœ¨memory modelä¸­é€‰æ‹©largeé€‰é¡¹ å°±å¯ä»¥äº†â€  
+
+(4)delay300mså¾ˆé‡è¦ï¼Œä¸èƒ½éšæ„åˆ é™¤ã€‚  
+****
+ä¸‰.testSerialbyMatlabæ˜¯ç”¨matlabæµ‹è¯•ESP8266çš„ç¨‹åº  
