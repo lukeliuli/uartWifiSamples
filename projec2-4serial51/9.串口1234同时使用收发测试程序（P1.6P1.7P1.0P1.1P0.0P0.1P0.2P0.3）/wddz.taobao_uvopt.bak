@@ -218,10 +218,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>21</ColumnNumber>
+      <ColumnNumber>92</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>161</TopLine>
-      <CurrentLine>161</CurrentLine>
+      <TopLine>107</TopLine>
+      <CurrentLine>144</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -286,8 +286,8 @@
 
   <AlienFiles>
     <PathWithFilename>E:\oneDriveData\OneDrive\GITHUB\uartWifi\projec2-4serial51\4.串口1收发程序(P1.6P1.7)\wddz.c</PathWithFilename>
-    <TopLine>43</TopLine>
-    <CurrentLine>50</CurrentLine>
+    <TopLine>31</TopLine>
+    <CurrentLine>45</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1651,13 +1651,13 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>3</ActiveTab>
+      <ActiveTab>0</ActiveTab>
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>21</ColumnNumber>
-          <TopLine>161</TopLine>
-          <CurrentLine>161</CurrentLine>
+          <ColumnNumber>89</ColumnNumber>
+          <TopLine>119</TopLine>
+          <CurrentLine>147</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\UART4.c</Name>
@@ -1673,9 +1673,9 @@
         </Doc>
         <Doc>
           <Name>E:\oneDriveData\OneDrive\GITHUB\uartWifi\projec2-4serial51\4.串口1收发程序(P1.6P1.7)\wddz.c</Name>
-          <ColumnNumber>0</ColumnNumber>
-          <TopLine>43</TopLine>
-          <CurrentLine>50</CurrentLine>
+          <ColumnNumber>148</ColumnNumber>
+          <TopLine>31</TopLine>
+          <CurrentLine>45</CurrentLine>
         </Doc>
       </Documents>
     </MDIGroup>

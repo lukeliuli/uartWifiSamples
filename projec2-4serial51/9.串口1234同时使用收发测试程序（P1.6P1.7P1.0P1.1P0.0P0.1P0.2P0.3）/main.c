@@ -138,15 +138,14 @@ void main()
 		my_itoa(sendData[6],int2str7);
 		my_itoa(sendData[7],int2str8);
 
-		sprintf(strSend,"%s %s %s %s %s %s %s %s %s\n",int2str1,int2str2,int2str3,int2str4,int2str5,int2str6,int2str7,int2str8);
+		sprintf(strSend,"%s %s %s %s %s %s %s %s \n",int2str1,int2str2,int2str3,int2str4,int2str5,int2str6,int2str7,int2str8);
 
-	   	//UartWrite4("1 2 3 4 5 6 7 1\n",16+1);
-	//	UartWrite3("1 2 3 4 5 6 7 1\n",16+1);
-		UartWrite4(strSend,strlen(strSend));
-		//UartWrite3(strSend,strlen(strSend)+1);
+	   	
+	     UartWrite4(strSend,strlen(strSend));
+		//UartWrite3(strSend,strlen(strSend));
 		
-		//sprintf(strSend,"%d %d %d %d %d %d %d %d %d",1,2,3,4,5,6,7,8); 51单片机不支持sprintf
-		//UartWrite4(strSend,strlen(strSend)+1)	;
+	    //sprintf(strSend,"%d %d %d %d %d %d %d %d \n",1,2,3,4,5,6,7,41); //51单片机不支持sprintf	 ,出现乱码
+		//UartWrite4(strSend,strlen(strSend))	;
 
 
 		UartDriver1();  //调用串口驱动

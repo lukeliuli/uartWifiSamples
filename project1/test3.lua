@@ -1,14 +1,14 @@
 
 
-
+uart.setup(0, 57600, 8, uart.PARITY_NONE, uart.STOPBITS_1, 0)
 --注意当前设定UART为57600
-print("\n running testlua3")
+print("\n Running test3.lua")
 revFieldVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 revUartVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 uartDataRcv = 0;
 
 wifi.setmode(wifi.STATION)
-wifi.sta.sethostname("LLESP8266")
+wifi.sta.sethostname("LL-ESP8266")
 print(wifi.sta.gethostname())
 station_cfg={}
 station_cfg.ssid="liuli"
@@ -139,14 +139,22 @@ end
 tmr.create():alarm(30000, tmr.ALARM_AUTO, function()
 
   if wifi.sta.getip()== nil then
-     print("IP unavaiable, Waiting...")
+     print("\n ReadThingspeakData:NO IP")
   else
     
      CHANNEL_READ_ID = 846323;
      CHANNEL_READ_API = "49IF4JCEHOREDFIY";
      readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
-     --uart.write(0,"\n order:"..revFieldVal[3])
-     --uart.write(0,"1001");
+     uart.write(0,"readThingspeakData is :"
+     ..revFieldVal[1]..' '
+     ..revFieldVal[2]..' '
+     ..revFieldVal[3]..' '
+     ..revFieldVal[4]..' '
+     ..revFieldVal[5]..' '
+     ..revFieldVal[6]..' '
+     ..revFieldVal[7]..' '
+     ..revFieldVal[8]..'\n')
+    
   end
 end)
 
@@ -170,12 +178,17 @@ end
 TMP = {-1,-1,-1,-1,-1,-1,-1,-1};
 
 cnt = 1
+--同时提取整数浮点数的正则式是"[+-]?%d+%p?%d*"，但是因为luna的tonumber出现错误，导致无法将浮点字符串转换为浮点数
+--所以暂时只支持整数
 for word in string.gmatch(data, "[+-]?%d+") 
 do 
 TMP[cnt]=tonumber(word)
-cnt=cnt+1
---uart.write(0,' ') 
+
+--uart.write(0,'-') 
 --uart.write(0,word) 
+--uart.write(0,'~') 
+--print(tonumber(word))
+cnt=cnt+1
 end
 
 if cnt<8 then
@@ -198,7 +211,7 @@ revUartVal = TMP;
    
 end)
               
-tmr.create():alarm(1000, tmr.ALARM_AUTO, function()
+tmr.create():alarm(100, tmr.ALARM_AUTO, function()
 
  if wifi.sta.getip()== nil then
      print("writeThingspeak:NO IP")
@@ -215,6 +228,7 @@ val5 = revUartVal[5]
 val6 = revUartVal[6]
 val7 = revUartVal[7]
 val8 = revUartVal[8]
+
 
  uartDataRcv =0;
  writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
