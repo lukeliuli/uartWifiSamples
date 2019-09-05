@@ -1,7 +1,7 @@
 # uartWifiSamples
 using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k60 and 51)  
 
-一、ESP8266方面
+一、ESP8266方面  
 1.ESP8266方面 running test3.lua. test3.lua是当前主运行文件,其余是测试程序.Init.lua文件用于设定串口波特率，运行test3.lua。注意部分如下  
 (1) ESP8266如果接51单片机，请设定波特率为115200以下。本项目默认57600  
 ****
