@@ -1,0 +1,345 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+E:\oneDriveData\OneDrive\GITHUB\uartWifi\projec2-4serial51\9.串口1234同时使用收发测试程序（P1.6P1.7P1.0P1.1P0.0P0.1P0.2P0.3）\wddz.taobao.uvproj
+Project File Date:  03/29/2018
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(143): warning C280: 'buf1': unreferenced local variable
+MAIN.C(143): warning C280: 'len1': unreferenced local variable
+MAIN.C(143): warning C280: 'buf2': unreferenced local variable
+MAIN.C(143): warning C280: 'len2': unreferenced local variable
+MAIN.C(143): warning C280: 'buf3': unreferenced local variable
+MAIN.C(143): warning C280: 'len3': unreferenced local variable
+MAIN.C(143): warning C280: 'buf4': unreferenced local variable
+MAIN.C(143): warning C280: 'len4': unreferenced local variable
+compiling UART1.c...
+compiling UART3.c...
+compiling UART2.c...
+compiling UART4.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE3?UART3
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=458 code=4862
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(143): warning C280: 'buf1': unreferenced local variable
+MAIN.C(143): warning C280: 'len1': unreferenced local variable
+MAIN.C(143): warning C280: 'buf2': unreferenced local variable
+MAIN.C(143): warning C280: 'len2': unreferenced local variable
+MAIN.C(143): warning C280: 'buf3': unreferenced local variable
+MAIN.C(143): warning C280: 'len3': unreferenced local variable
+MAIN.C(143): warning C280: 'buf4': unreferenced local variable
+MAIN.C(143): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE3?UART3
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=458 code=4862
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf3': unreferenced local variable
+MAIN.C(144): warning C280: 'len3': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4883
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 15 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf3': unreferenced local variable
+MAIN.C(144): warning C280: 'len3': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4883
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 15 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf3': unreferenced local variable
+MAIN.C(144): warning C280: 'len3': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4883
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 15 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4883
+creating hex file from "wddz.taobao"...
+"wddz.taobao" - 0 Error(s), 7 Warning(s).
+Clean started: Project: 'wddz.taobao'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf3': unreferenced local variable
+MAIN.C(144): warning C280: 'len3': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+compiling UART1.c...
+compiling UART3.c...
+compiling UART2.c...
+compiling UART4.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4883
+creating hex file from "tt"...
+"tt" - 0 Error(s), 15 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4900
+creating hex file from "tt"...
+"tt" - 0 Error(s), 13 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(144): warning C280: 'buf1': unreferenced local variable
+MAIN.C(144): warning C280: 'len1': unreferenced local variable
+MAIN.C(144): warning C280: 'buf2': unreferenced local variable
+MAIN.C(144): warning C280: 'len2': unreferenced local variable
+MAIN.C(144): warning C280: 'buf4': unreferenced local variable
+MAIN.C(144): warning C280: 'len4': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE1?UART1
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_UARTWRITE2?UART2
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 08FEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0988H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  INT2STR2
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+Program Size: data=16.1 xdata=455 code=4878
+creating hex file from "tt"...
+"tt" - 0 Error(s), 13 Warning(s).

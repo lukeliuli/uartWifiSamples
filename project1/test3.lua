@@ -1,12 +1,14 @@
 
-uart.setup(0, 115200, 8, uart.PARITY_NONE, uart.STOPBITS_1, 0)
 
+
+--注意当前设定UART为57600
+print("\n running testlua3")
 revFieldVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 revUartVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 uartDataRcv = 0;
 
 wifi.setmode(wifi.STATION)
-wifi.sta.sethostname("Node-MCU-liuli")
+wifi.sta.sethostname("LLESP8266")
 print(wifi.sta.gethostname())
 station_cfg={}
 station_cfg.ssid="liuli"
@@ -33,7 +35,7 @@ end)
 
 function writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
 
-    print("\n Sending data to thingspeak.com")
+    --print("\n Sending data to thingspeak.com")
     conn=net.createConnection(net.TCP, 0) 
     --conn:on("receive", function(conn, payload) 
    -- print(payload) 
@@ -50,7 +52,7 @@ function writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
 
 
     
-    conn:send("GET /update?key=ZK3IYTYF96JA7S7G")
+    conn:send("GET /update?key="..writekey)
 
 
     
@@ -83,7 +85,7 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
         --print("Receive data:\n"..payload.."\n");
         
         if (string.find(payload, "Status: 200 OK") == nil) then
-            print("RCV: HTTP No OK") 
+            --print("RCV: HTTP No OK") 
             return 
         end
         -- Everything is OK
@@ -134,7 +136,7 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
 end
 
 
-tmr.create():alarm(3000, tmr.ALARM_AUTO, function()
+tmr.create():alarm(30000, tmr.ALARM_AUTO, function()
 
   if wifi.sta.getip()== nil then
      print("IP unavaiable, Waiting...")
@@ -143,22 +145,27 @@ tmr.create():alarm(3000, tmr.ALARM_AUTO, function()
      CHANNEL_READ_ID = 846323;
      CHANNEL_READ_API = "49IF4JCEHOREDFIY";
      readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
-     uart.write(0,"\n order:"..revFieldVal[3])
-     
+     --uart.write(0,"\n order:"..revFieldVal[3])
+     --uart.write(0,"1001");
   end
 end)
 
 
 
 
-uart.on("data",8,function (data)       
- --uart.write(0,"\n order:"..revFieldVal[3])
- uart.write(0,"\n rev data:"..data..type(data))
- --uart.write(0,"\n rev data:"..#data)
+uart.on("data","\n",function (data)
+     if wifi.sta.getip()== nil then
+     print("UART:NO IP\n")
+     return
+     end       
+
+ uart.write(0,"\n rev data:"..data.." type is:"..type(data))
+ uart.write(0,"\n rev data length:"..#data.."\n")
  
 if #data<15 then
 return
 end
+
 
 TMP = {-1,-1,-1,-1,-1,-1,-1,-1};
 
@@ -167,8 +174,8 @@ for word in string.gmatch(data, "[+-]?%d+")
 do 
 TMP[cnt]=tonumber(word)
 cnt=cnt+1
-uart.write(0,' ') 
-uart.write(0,word) 
+--uart.write(0,' ') 
+--uart.write(0,word) 
 end
 
 if cnt<8 then
@@ -187,13 +194,14 @@ revUartVal = TMP;
    --  uartData6=tonumber(data[6]);
    --  uartData7=tonumber(data[7]);
    --  uartData8=tonumber(data[8]);
-      
+
+   
 end)
               
 tmr.create():alarm(1000, tmr.ALARM_AUTO, function()
 
  if wifi.sta.getip()== nil then
-     print("IP unavaiable, Waiting...")
+     print("writeThingspeak:NO IP")
   else
 writekey ="ZK3IYTYF96JA7S7G"
 
@@ -210,6 +218,7 @@ val8 = revUartVal[8]
 
  uartDataRcv =0;
  writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
+
   end
 end
 
