@@ -31,11 +31,11 @@ using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k
   sscanf(buf4,"TS:%d %d %d %d %d %d %d %d\n",&TSval1,&TSval2,&TSval3,&TSval4,&TSval5,&TSval6,&TSval7,&TSval8);
 
 ****
-三、K60方面  
+三、K60方面,代码在mainK60.c中  
 1.IAR+K60可以用sprintf将整数转换为字符串  
 2 IAR+K60可以用sprintf不可以将浮点数转换为字符串，会出现错误
 3 IAR+K60接收ESP8266，直接使用sscanf函数或者字符串中各个field的整数值（代码中还有一些预处理）  
-char buf4[100]="TS:1 2 3 4 5 6 7 8";
+char buf4[100]="TS:1 2 3 4 5 6 7 8";    
 sscanf(buf4,"TS:%d %d %d %d %d %d %d %d\n",&TSval1,&TSval2,&TSval3,&TSval4,&TSval5,&TSval6,&TSval7,&TSval8);
 
 ****
