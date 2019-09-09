@@ -19,6 +19,16 @@ uchar int2str8[5];
 uchar strSend[50];
 
 
+char buf4[100] = "TS: 1 2 3 4 5 6 7 8";
+int TSval1;
+int TSval2;
+int TSval3;
+int TSval4;
+int TSval5;
+int TSval6;
+int TSval7;
+int TSval8;
+
 void Delay300ms()		//@11.0592MHz
 {
     unsigned char i, j, k;
@@ -36,15 +46,16 @@ void Delay300ms()		//@11.0592MHz
 }
 void my_itoa(int n,char s[]);
 
+//代码不能直接运行，只是做一个演示。
 void main()
 {
     
     EA = 1;            //开总中断
     
-    ConfigUART1(57600);  //配置波特率为9600。115200似乎有问题
-    ConfigUART2(57600);  //配置波特率为9600。 115200似乎有问题
-    ConfigUART3(57600);  //配置波特率为9600。 115200似乎有问题
-    ConfigUART4(57600);  //配置波特率为9600。 115200似乎有问题
+    ConfigUART1(9600);  //配置波特率为9600。115200似乎有问题
+    ConfigUART2(9600);  //配置波特率为9600。 115200似乎有问题
+    ConfigUART3(9600);  //配置波特率为9600。 115200似乎有问题
+    ConfigUART4(9600);  //配置波特率为9600。 115200似乎有问题
     
     
     while (1)
@@ -70,9 +81,10 @@ void main()
         //sprintf(strSend,"%d %d %d %d %d %d %d %d %d\n",1,2,3,4,5,6,7,8); 有些51单片机不支持sprintf(%d).出现大量乱码
         //UartWrite1(strSend, strlen(strSend));
         
-        
-        
-        
+		
+		
+		//char buf4[100] = "TS: 1 2 3 4 5 6 7 8";ESP8266读取的thingspeak数据，然后通过串口给51单片机
+		ExtractThingspeakData(buf4, strlen(buf4))
     }
 }
 
@@ -156,4 +168,53 @@ void my_itoa(int n, char s[])
     
     
     
+}
+
+
+
+
+void ExtractThingspeakData(unsigned char *buf4, unsigned char len4)
+{
+
+
+
+
+	uchar int2str1[5];
+	uchar int2str2[5];
+	uchar int2str3[5];
+	uchar int2str4[5];
+	uchar int2str5[5];
+	uchar int2str6[5];
+	uchar int2str7[5];
+	uchar int2str8[5];
+
+
+
+	//	UartWrite3(buf4,strlen(buf4));
+	   //my_itoa(strlen(buf4),int2str1);
+	   //UartWrite3(int2str1,strlen(int2str1));
+	   //my_itoa(strlen(buf4),int2str1);
+	   //UartWrite3("######",7)	;
+	   //UartWrite3(int2str1,strlen(int2str1));
+
+
+	if (len4 < 20)
+		return;
+
+	if (buf4[0] != 'T')
+		return;
+
+	if (buf4[1] != 'S')
+		return;
+
+	if (buf4[2] != ':')
+		return;
+
+
+
+	// UartWrite3("RVL is:\n",strlen("RVL is:\n")+1);
+
+	sscanf(buf4, "TS:%d %d %d %d %d %d %d %d\n", &TSval1, &TSval2, &TSval3, &TSval4, &TSval5, &TSval6, &TSval7, &TSval8);
+
+
 }
