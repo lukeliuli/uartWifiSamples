@@ -2,15 +2,18 @@
 #include <STC15W4KXX.H>
 #include <intrins.h>
 #include"Init_IO.h"
+#include<string.h>
 bit flagFrame4 = 0;  //帧接收完成标志，即接收到一帧新数据
 bit flagTxd4 = 0;    //单字节发送完成标志，用来替代TXD中断标志位
 unsigned char cntRxd4 = 0;   //接收字节计数器
-unsigned char xdata bufRxd4[32];  //接收字节缓冲区
+unsigned char  bufRxd4[128];  //接收字节缓冲区	 //原来只有32字节，我改为128字节
+unsigned char len4;
+unsigned char buf4[128];	   //原来只有40字节，我改为128字节
 #define ES4 0x10
 #define S4RI 0x01
 #define S4TI 0x02
-extern void UartAction(unsigned char *buf1, unsigned char len1,unsigned char *buf2, unsigned char len2,unsigned char *buf3, unsigned char len3,unsigned char *buf4, unsigned char len4);
-
+extern void UartAction4(unsigned char *buf4, unsigned char len4);
+extern timer4count;
 void ConfigUART4(unsigned int baud4)
 {
 //     RS485_DIR4 = 0; //RS485设置为接收方向
@@ -62,6 +65,7 @@ void UartWrite4(unsigned char *buf4, unsigned char len4)
 unsigned char UartRead4(unsigned char *buf4, unsigned char len4)
 {
     unsigned char i;
+		memset(buf4,0,sizeof(buf4));	  //接受寄存器清零
     
     if (len4 > cntRxd4)  //指定读取长度大于实际接收到的数据长度时，
     {                  //读取长度设置为实际接收到的数据长度
@@ -72,10 +76,12 @@ unsigned char UartRead4(unsigned char *buf4, unsigned char len4)
         *buf4++ = bufRxd4[i];
     }
     cntRxd4 = 0;  //接收计数器清零
+	memset(bufRxd4,0,sizeof(bufRxd4));	  //接受寄存器清零
     
     return len4;  //返回实际读取长度
 }
 /* 串口接收监控，由空闲时间判定帧结束，需在定时中断中调用，ms-定时间隔 */
+
 void UartRxMonitor4(unsigned char ms4)
 {
     static unsigned char cntbkp4 = 0;
@@ -97,6 +103,8 @@ void UartRxMonitor4(unsigned char ms4)
                 {
                     flagFrame4 = 1;  //设置帧接收完成标志
                 }
+
+			
             }
         }
     }
@@ -104,40 +112,53 @@ void UartRxMonitor4(unsigned char ms4)
     {
         cntbkp4 = 0;
     }
+	
+ timer4count++;
+
+
+
 }
 /* 串口驱动函数，监测数据帧的接收，调度功能函数，需在主循环中调用 */
 void UartDriver4()
 {
-    unsigned char len1;
-    unsigned char pdata buf1[40];    
-    unsigned char len2;
-    unsigned char pdata buf2[40];	 
-    unsigned char len3;
-    unsigned char pdata buf3[40];
-    unsigned char len4;
-    unsigned char pdata buf4[40];
+   // unsigned char len1;
+  //  unsigned char pdata buf1[40];      //原来只有40字节，我改为128字节
+  ////  unsigned char len2;
+   // unsigned char pdata buf2[40];	 	//原来只有40字节，我改为128字节
+  //  unsigned char len3;
+  //  unsigned char pdata buf3[40];	   //原来只有40字节，我改为128字节
+
     
     if (flagFrame4) //有命令到达时，读取处理该命令
     {
         flagFrame4 = 0;
-        len4 = UartRead4(buf4, sizeof(buf4)-2); //将接收到的命令读取到缓冲区中	 
-        UartAction(buf1, len1,buf2, len2,buf3, len3, buf4, len4);  //传递数据帧，调用动作执行函数
+        len4 = UartRead4(buf4, sizeof(buf4)); //将接收到的命令读取到缓冲区中	 
+        UartAction4(buf4, len4);  //传递数据帧，调用动作执行函数
     }
 }
 /* 串口中断服务函数 */
 void InterruptUART4() interrupt 18 
 {
-    if (S4CON&S4RI)  //接收到新字节	   当字节发送到结束位的一半的时候S2RI接收标志变为1  进入窜口中断
+   
+	if (S4CON&S4RI)  //接收到新字节	   当字节发送到结束位的一半的时候S2RI接收标志变为1  进入窜口中断
     {
         S4CON&=~S4RI;  //清零接收中断标志位
         if (cntRxd4 < sizeof(bufRxd4)) //接收缓冲区尚未用完时，
         {                            //保存接收字节，并递增计数器
-            bufRxd4[cntRxd4++] = S4BUF;	
+            
+			bufRxd4[cntRxd4++] = S4BUF;	
+
+			if(S4BUF == '\0' || S4BUF == '\n' || S4BUF == '\r')
+			flagFrame4 = 1;
+
         }
+		
     }
     if (S4CON&S4TI)  //字节发送完毕
     {
         S4CON&=~S4TI;   //清零发送中断标志位
         flagTxd4 = 1;  //设置字节发送完成标志
     }
+
+	 timer4count++;
 }

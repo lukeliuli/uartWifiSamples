@@ -132,6 +132,7 @@ void InterruptUART2() interrupt 8
         if (cntRxd2 < sizeof(bufRxd2)) //接收缓冲区尚未用完时，
         {                            //保存接收字节，并递增计数器
             bufRxd2[cntRxd2++] = S2BUF;	
+
         }
     }
     if (S2CON&S2TI)  //字节发送完毕

@@ -22,6 +22,8 @@ wifi.sta.autoconnect(1)
 CHANNEL_READ_ID = 846323;
 CHANNEL_READ_API = "49IF4JCEHOREDFIY";
 writekey ="ZK3IYTYF96JA7S7G"
+
+
          
 tmr.create():alarm(300000, tmr.ALARM_AUTO, function()
 
@@ -122,8 +124,28 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
          
           revFieldVal = numbers;  
 
-
-          --chengkeyue,
+        --some 51mcu,30ms is uart receving interval time
+        --uart.write(0,"TS1:"..revFieldVal[1]..'\n');
+        
+        --tmr.delay(1000*50)
+        --uart.write(0,"TS2:"..revFieldVal[2]..'\n');
+        --tmr.delay(1000*50) 
+        --uart.write(0,"TS3:"..revFieldVal[3]..'\n');
+        --tmr.delay(1000*50)
+        --uart.write(0,"TS4:"..revFieldVal[4]..'\n');
+        --tmr.delay(1000*50)
+        --uart.write(0,"TS5:"..revFieldVal[5]..'\n');
+        --tmr.delay(1000*50)
+        --uart.write(0,"TS6:"..revFieldVal[6]..'\n');
+       -- tmr.delay(1000*50)
+        --uart.write(0,"TS7:"..revFieldVal[7]..'\n');
+       -- tmr.delay(1000*50)
+        --uart.write(0,"TS8:"..revFieldVal[8]..'\n');
+           
+       
+      
+         
+            --chengkeyue,
           uart.write(0,"TS:"..revFieldVal[1].." "
           ..revFieldVal[2].." "
           ..revFieldVal[3].." "
@@ -134,6 +156,9 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
           ..revFieldVal[8].."\n"
           
           )
+           
+       
+          
         
         end
     end)
@@ -153,6 +178,7 @@ function readThingSpeak(CHANNEL_READ_ID,CHANNEL_READ_API)
         sock:send(sendstring)
     end)
  
+   -- sockTS:connect(80,'api.thingspeak.com')
     sockTS:connect(80,'184.106.153.149')
 end
 

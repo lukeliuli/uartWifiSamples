@@ -69,7 +69,38 @@ uchar int2str6[5];
 uchar int2str7[5];
 uchar int2str8[5];
 uchar strSend[50];
+timer4count = 0;
+void Delay3ms()		//@11.0592MHz
+{
+	unsigned char i, j, k;
 
+	i = 2;
+	j = 7;
+	k = 183;
+	do
+	{
+		do
+		{
+			while (--k);
+		} while (--j);
+	} while (--i);
+}
+
+void Delay30ms()		//@11.0592MHz
+{
+	unsigned char i, j, k;
+
+	i = 2;
+	j = 67;
+	k = 183;
+	do
+	{
+		do
+		{
+			while (--k);
+		} while (--j);
+	} while (--i);
+}
 
 void Delay300ms()		//@11.0592MHz
 {
@@ -115,35 +146,36 @@ void main()
     EA = 1;            //开总中断
     ConfigP0P1P2P3P4P5P6P7();
     ConfigTimer0(1);   //配置T0定时1ms
-    ConfigUART1(57600);  //配置波特率为9600。115200似乎有问题
-    ConfigUART2(57600);  //配置波特率为9600。 115200似乎有问题
-    ConfigUART3(57600);  //配置波特率为9600。 115200似乎有问题    
-    ConfigUART4(57600);  //配置波特率为9600。 115200似乎有问题
+    ConfigUART1(9600);  //配置波特率为9600。115200，57600似乎有问题
+    ConfigUART2(9600);  //配置波特率为9600。 115200，57600似乎有问题
+    ConfigUART3(9600);  //配置波特率为9600。 115200，57600似乎有问题    
+    ConfigUART4(9600);  //配置波特率为9600。 115200，57600似乎有问题
     
 	
     while (1)
     {	
-	    Delay300ms();
-		Delay300ms();
-		//Delay300ms();
-        sendData[7]=51;
-
+	   	Delay3ms();
+       // sendData[7]=51;
+	   if( timer4count>1000) //每一秒
+	   {
+	   sendData[0] = 11;
+	   timer4count= 0;
 		//my_itoa输入数据最大9999
 		my_itoa(sendData[0],int2str1);
-		my_itoa(sendData[1],int2str2);
-		my_itoa(sendData[2],int2str3);
-		my_itoa(sendData[3],int2str4);
-		my_itoa(sendData[4],int2str5);
-		my_itoa(sendData[5],int2str6);
-		my_itoa(sendData[6],int2str7);
-		my_itoa(sendData[7],int2str8);
-
-		sprintf(strSend,"%s %s %s %s %s %s %s %s \n",int2str1,int2str2,int2str3,int2str4,int2str5,int2str6,int2str7,int2str8);
+	my_itoa(sendData[1],int2str2);
+	my_itoa(sendData[2],int2str3);
+	my_itoa(sendData[3],int2str4);
+	my_itoa(sendData[4],int2str5);
+	my_itoa(sendData[5],int2str6);
+	my_itoa(sendData[6],int2str7);
+	my_itoa(sendData[7],int2str8);
+	sprintf(strSend,"%s %s %s %s %s %s %s %s\n",int2str1,int2str2,int2str3,int2str4,int2str5,int2str6,int2str7,int2str8);
 
 	   	
-	     UartWrite4(strSend,strlen(strSend));
-		//UartWrite3(strSend,strlen(strSend));
-		
+	     //UartWrite4(strSend,strlen(strSend));
+		UartWrite4(strSend,strlen(strSend));
+
+		}
 	    //sprintf(strSend,"%d %d %d %d %d %d %d %d \n",1,2,3,4,5,6,7,41); //51单片机不支持sprintf	 ,出现乱码
 		//UartWrite4(strSend,strlen(strSend))	;
 
@@ -161,6 +193,7 @@ void main()
    buf-接收到的命令帧指针，len-命令帧长度 */
 void UartAction(unsigned char *buf1, unsigned char len1,unsigned char *buf2, unsigned char len2,unsigned char *buf3, unsigned char len3,unsigned char *buf4, unsigned char len4)
 {
+       
 		/*
         if((buf1[0] ==0x01)&&(buf1[1] ==0x00)&&(len1 ==2))
             {OUT1=OUT2=OUT3=OUT4=1;UartWrite1(a1, 2);}     
@@ -181,10 +214,104 @@ void UartAction(unsigned char *buf1, unsigned char len1,unsigned char *buf2, uns
             {OUT1=OUT2=OUT3=OUT4=1;UartWrite4(d1, 2);}     
         if((buf4[0] ==0X04)&&(buf4[1] ==0xFF)&&(len4 ==2))
             {OUT1=OUT2=OUT3=OUT4=0;UartWrite4(d2, 2);}	  */
-			
-		 UartWrite3(buf4,len4);
+	
+	
+
+}
+
+
+void UartAction4(unsigned char *buf4, unsigned char len4)
+{
+       
+		 
+		int TSval1;
+		int TSval2;
+		int TSval3;
+		int TSval4;
+		int TSval5;
+		int TSval6;
+		int TSval7;
+		int TSval8;
+
+	   uchar int2str1[5];
+uchar int2str2[5];
+uchar int2str3[5];
+uchar int2str4[5];
+uchar int2str5[5];
+uchar int2str6[5];
+uchar int2str7[5];
+uchar int2str8[5];
+
+			  
+		  
+	 //	UartWrite3(buf4,strlen(buf4));
+		//my_itoa(strlen(buf4),int2str1);
+		//UartWrite3(int2str1,strlen(int2str1));
+	    //my_itoa(strlen(buf4),int2str1);
+		//UartWrite3("######",7)	;
+		//UartWrite3(int2str1,strlen(int2str1));
+	
+		 
+		if(len4<20)
+		return;
+
+		if(buf4[0] != 'T')
+		return;
+		
+		if(buf4[1] != 'S')
+		return;
+		
+		if(buf4[2] != ':')
+		return;
+
+
+	
+		// UartWrite3("RVL is:\n",strlen("RVL is:\n")+1);
+	
+         sscanf(buf4,"TS:%d %d %d %d %d %d %d %d\n",&TSval1,&TSval2,&TSval3,&TSval4,&TSval5,&TSval6,&TSval7,&TSval8);
+		
+	
+			UartWrite3("RVL:\n",strlen("RVL:\n"));	
+			my_itoa(TSval1,int2str1);
+			UartWrite3(int2str1,strlen(int2str1));
+
+			UartWrite3("-",1);
+			my_itoa(TSval2,int2str2);
+			UartWrite3(int2str2,strlen(int2str2));
+
+			 UartWrite3("-",1) ;
+			my_itoa(TSval3,int2str3);
+			UartWrite3(int2str3,strlen(int2str3));
+
+			 UartWrite3("-",1);
+			my_itoa(TSval4,int2str4);
+			UartWrite3(int2str4,strlen(int2str4));
+
+			UartWrite3("-",1) ;
+			my_itoa(TSval5,int2str5);
+			UartWrite3(int2str5,strlen(int2str5));
+
+		
+
+			UartWrite3("-",1) ;
+	        my_itoa(TSval6,int2str6);
+			UartWrite3(int2str6,strlen(int2str6));
+
+			 UartWrite3("-",1) ;
+			my_itoa(TSval7,int2str7);
+			UartWrite3(int2str7,strlen(int2str7));
+
+			UartWrite3("-",1) ;
+            my_itoa(TSval8,int2str8);
+			UartWrite3(int2str8,strlen(int2str8));
+
 			
 
+			UartWrite3("\n",1) ;
+		
+
+		
+	
 }
 /* 配置并启动T0，ms-T0定时时间 */
 void ConfigTimer0(unsigned int ms)

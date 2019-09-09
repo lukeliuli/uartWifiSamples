@@ -5,7 +5,7 @@
 bit flagFrame3 = 0;  //帧接收完成标志，即接收到一帧新数据
 bit flagTxd3 = 0;    //单字节发送完成标志，用来替代TXD中断标志位
 unsigned char cntRxd3 = 0;   //接收字节计数器
-unsigned char xdata bufRxd3[32];  //接收字节缓冲区
+unsigned char xdata bufRxd3[32];  //接收字节缓冲区	 //原来只有32字节，我改为128字节
 #define ES3 0x08
 #define S3RI 0x01
 #define S3TI 0x02
@@ -109,13 +109,13 @@ void UartRxMonitor3(unsigned char ms3)
 void UartDriver3()
 {
     unsigned char len1;
-    unsigned char pdata buf1[40];    
+    unsigned char pdata buf1[40];    //原来只有40字节，我改为128字节
     unsigned char len2;
-    unsigned char pdata buf2[40];	 
+    unsigned char pdata buf2[40];	 	 //原来只有40字节，我改为128字节
     unsigned char len3;
-    unsigned char pdata buf3[40];
+    unsigned char pdata buf3[40];		//原来只有40字节，我改为128字节
     unsigned char len4;
-    unsigned char pdata buf4[40];
+    unsigned char pdata buf4[40];	   //原来只有40字节，我改为128字节
     
     if (flagFrame3) //有命令到达时，读取处理该命令
     {
