@@ -6,7 +6,14 @@ using esp8266 (nodemcu and lua) for transfering msg between thingspeak and mcu(k
 (1) ESP8266如果接51单片机，请设定波特率为115200以下。本项目默认57600  
 (2) ESP8266读取thingspeak的数据，并通过串口传递给单片机，串口输出给单片机数据格式类似  
   "TS:1 2 3 4 5 6 7 8\n"   
-(3)test3For51.lua,代码与test3.lua一样，但是除了输出数据以外，其余的调试信息都屏蔽了，专门用于51单片机的信息传递
+(3)test3For51.lua,代码与test3.lua一样，但是除了输出数据以外，其余的调试信息都屏蔽了，专门用于51单片机的信息传递  
+(4）更新为test4.lua,注意改变如下  
+A.test4.lua采用nodemcu的http模块（Get,Post），不直接用sockect写  
+B.test4.lua输入输出都采用json格式，读thingspeak采用sjson模块进行数据解析  
+C.test4.lua读写数据除了field1到8，最后还加上了精度和纬度信息。因为不同时写Field1到8和位置信息的话， 读的话就无法同时读field信息和位置信息了   
+D.test4.lua从单片机串口输入的数据格式类似：F 1 2 3 4 5 6 7 8 1.1 2.2,输出到单片机串口的格式为 TS:1 2 3 4 5 6 7 8 1.1 2.2  
+E.test4.lua暂时还无法用put防范改channel的setting,现在是用m语言在云端改channel setting中的location
+
 
 
 ****

@@ -1,7 +1,6 @@
-
+--https://api.thingspeak.com/channels/846323.json
 --noting chinaese commet is not allowed in this version lua
-uart.setup(0, 9600, 8, uart.PARITY_NONE, uart.STOPBITS_1, 0)
---noting : UART为57600
+
 revFieldVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 revUartVal = {-1,-1,-1,-1,-1,-1,-1,-1};
 uartDataRcv = 0;
@@ -11,8 +10,8 @@ print(wifi.sta.gethostname())
 station_cfg={}
 station_cfg.ssid="liuli"
 station_cfg.pwd=""
-station_cfg.ssid="912-903"
-station_cfg.pwd="19820812"
+--station_cfg.ssid="912-903"
+--station_cfg.pwd="19820812"
 station_cfg.save=false
 wifi.sta.config(station_cfg)
 wifi.sta.autoconnect(1)
@@ -175,54 +174,65 @@ end)
 
 
 uart.on("data","\n",function (data)
-     uartDataRcv = 0;
-     if wifi.sta.getip()== nil then
-     --print("UART:NO IP\n")
-     return
-     end       
+         uartDataRcv = 0;
+         if wifi.sta.getip()== nil then
+         --print("UART:NO IP\n")
+         return
+         end       
 
- --uart.write(0,"\n uart rev data:"..data.." type is:"..type(data))
- --uart.write(0,"\n uart rev data length:"..#data.."\n")
- 
-if #data<15 then
-return
-end
+ uart.write(0,"\n uart rev data:"..data.." type is:"..type(data))
+ uart.write(0,"\n uart rev data length:"..#data.."\n")
 
 
-TMP = {-1,-1,-1,-1,-1,-1,-1,-1};
+        
 
-cnt = 1
+        TMP = {-1,-1,-1,-1,-1,-1,-1,-1};
+        cnt = 1
+        
+        --Extracting GPS,71==G 
+       
+        if string.byte(data,1)== 71 then
+          
+            for word in string.gmatch(data, "%d+%p?%d*") do 
+              TMP[cnt]=tonumber(word)
+              cnt=cnt+1
+               --uart.write(0,'-') 
+               --uart.write(0,word) 
+               --uart.write(0,'~') 
+               --print(tonumber(word))
+            end
+             revUartVal = TMP;
+             uartDataRcv =2;
+            return;
+        end
+
+
+--extracting field data
 --the extracting float number patterm mode is "[+-]?%d+%p?%d*"，
 -- BUT luna tonumber can not convert float string to float numbers
 -- so the intege number is only available
-for word in string.gmatch(data, "[+-]?%d+") 
-do 
-TMP[cnt]=tonumber(word)
 
---uart.write(0,'-') 
---uart.write(0,word) 
---uart.write(0,'~') 
---print(tonumber(word))
-cnt=cnt+1
-end
 
-if cnt<8 then
-return
-end
-
-revUartVal = TMP;
- uartDataRcv =1;
-    --     print("rev data:"..data[3])
-     
-    -- uartData1=tonumber(data[1]);
-    -- uartData2=tonumber(data[2]);
-   --  uartData3=tonumber(data[3]);
-    -- uartData4=tonumber(data[4]);
-    -- uartData5=tonumber(data[5]);
-   --  uartData6=tonumber(data[6]);
-   --  uartData7=tonumber(data[7]);
-   --  uartData8=tonumber(data[8]);
-
+           -- 70=='F'
+        if string.byte(data,1)==70 then
+            for word in string.gmatch(data, "[+-]?%d+%p?%d*") 
+                do 
+                TMP[cnt]=tonumber(word)
+                
+                --uart.write(0,'-') 
+                --uart.write(0,word) 
+                --uart.write(0,'~') 
+                --print(tonumber(word))
+                cnt=cnt+1
+            end
+        
+            if cnt<8 then
+            return
+            end
+        
+             revUartVal = TMP;
+             uartDataRcv =1;
+        end
    
 end)
 
@@ -233,23 +243,77 @@ tmr.create():alarm(100, tmr.ALARM_AUTO, function()
     -- print("writeThingspeak:NO IP")
   else
 
+    
+    if uartDataRcv == 1 then
+    
+    val1 = revUartVal[1]
+    val2 = revUartVal[2]
+    val3 = revUartVal[3]
+    val4 = revUartVal[4]
+    val5 = revUartVal[5]
+    val6 = revUartVal[6]
+    val7 = revUartVal[7]
+    val8 = revUartVal[8]
+    
+    
+     uartDataRcv =0;
+     writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
+    
+    --note:the bin version should be float
+    
+     end
 
-if uartDataRcv == 1 then
-
-val1 = revUartVal[1]
-val2 = revUartVal[2]
-val3 = revUartVal[3]
-val4 = revUartVal[4]
-val5 = revUartVal[5]
-val6 = revUartVal[6]
-val7 = revUartVal[7]
-val8 = revUartVal[8]
-
-
- uartDataRcv =0;
- writeThingspeak(writekey,val1,val2,val3,val4,val5,val6,val7,val8)
-
-  end
+      if uartDataRcv == 2 then
+    
+        val1 = revUartVal[1]
+        val2 = revUartVal[2]
+        
+        
+        
+        uartDataRcv =0;
+        val1 = 112.977322;
+        val2 = 28.155963;
+        
+         writeLonLatThingspeak(writekey,val1,val2);
+    
+     end
 end
 
 end)
+
+
+function writeLonLatThingspeak(writekey,val1,val2)
+
+    --print("\n Sending data to thingspeak.com")
+    conn=net.createConnection(net.TCP, 0) 
+    --conn:on("receive", function(conn, payload) 
+   -- print(payload) 
+    --end)
+   
+    
+   str1 = "&lat="..val1.."&lon="..val2
+   
+
+    conn:connect(80,"184.106.153.149") 
+
+
+    
+    conn:send("GET /update?key="..writekey)
+
+
+    
+    conn:send(str1)
+    conn:send(" HTTP/1.1\r\n") 
+    conn:send("Host: api.thingspeak.com\r\n") 
+    conn:send("Accept: */*\r\n") 
+    conn:send("User-Agent: Mozilla/4.0 (compatible; esp8266 Lua; Windows NT 5.1)\r\n")
+    conn:send("\r\n")
+    
+    conn:on("sent",function(conn)
+                      --print("Closing connection")
+                      conn:close()
+                  end)
+    conn:on("disconnection", function(conn)
+          --print("Got disconnection...")
+  end)
+end
